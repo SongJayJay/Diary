@@ -29,4 +29,20 @@ Doxygen
 ## Doxygen插件
   在vim环境中为了简化doxygen注释的编写，可以使用doxygenTooKit.vim来实现
   注释的自动化加入。
- 
+### 安装Doxygen
+   1. 将doxygentoolkit.vim复制到.vim/plugin中
+   2. 配置.vimrc设置全局变量
+      ```
+      map fa : DoxAuth<cr><cr>
+      map fg : Dox<cr>
+      map fl : DoxLic<cr>
+      #设置全局变量
+      let g:DoxygenToolkit_authorName=$USER
+      let g:DoxygenToolkit_licenseTag="licese<cr>"
+      let g:DoxygenToolkit_briefTag_pre="@brief\t"
+      let g:DoxygenToolkit_paramTag_pre="@param\t"
+      let g:DoxygenToolkit_returnTag="@return\t"
+      let g:DoxygenToolkit_maxFunctionProtoLines=30
+      ```
+   3. 指定使用的插件：source XXXX/DoxygenToolkit.vim
+
