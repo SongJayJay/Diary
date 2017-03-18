@@ -31,7 +31,7 @@ Doxygen
   注释的自动化加入。
 ### 安装Doxygen
    1. 将doxygentoolkit.vim复制到.vim/plugin中
-   2. 配置.vimrc设置全局变量
+   2. 配置.vimrc设置全局变量(全局设置在/etc/vimrc)
       ```
       map fa : DoxAuth<cr><cr>
       map fg : Dox<cr>
