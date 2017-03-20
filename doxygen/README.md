@@ -45,7 +45,7 @@ Doxygen
       let g:DoxygenToolkit_maxFunctionProtoLines=30
       ```
    3. 指定使用的插件：source XXXX/DoxygenToolkit.vim
-## 使用Dixygen生成说明文档
+## 使用Doxygen生成说明文档
    1. 系统中安装doxygen
    2. 生成配置文件
       ```
