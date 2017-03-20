@@ -45,4 +45,19 @@ Doxygen
       let g:DoxygenToolkit_maxFunctionProtoLines=30
       ```
    3. 指定使用的插件：source XXXX/DoxygenToolkit.vim
-
+## 使用Dixygen生成说明文档
+   1. 系统中安装doxygen
+   2. 生成配置文件
+      ```
+      doxygen -g conf_name
+      ```
+   3. 配置doxygen文件
+      - EXTRACT_ALL 表示输出所有函数，但是private和static函数不属于其管制
+      - EXTRACT_PRIVATE 输出private函数
+      - EXTRACT_STATIC 输出static函数
+      - EXTRACT_LOCAL_CLASSES YES包含源文件和头文件中的定义， NO只包含在头文件中定义的
+      - INPUT 文档输入目录
+      - OUTPUT 文档输出目录
+      - RECURSIVE 是否子目录生效
+      - EXAMPLE_PATTERNS = *.cpp/*.h 过滤目录中文件类型进行文档生成
+      - GENERATE_LATEX =YES 生成Latex输出, NO不输出
