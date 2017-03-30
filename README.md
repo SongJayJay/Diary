@@ -117,6 +117,6 @@
 	2. LIBRARY_PATH
 	动态运行库：
 	1. gcc 参数"-Wl,-rpath"指定
-	2. LD_LIBRARY_PATH
+	2. LD_LIBRARY_PATH, 在root根目录中的.bashrc配置环境变量。
 	3. 配置文件/etc/ld.so.conf,修改完记得source
 	
