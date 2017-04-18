@@ -104,3 +104,13 @@
 	软件配置管理的目的就是管理和控制SCI变化对软件质量的影响，保证软件质量。
 ## 170412 
 	坐下来读本书，忽然看到魔数。记得上次在《深入理解JVM》碰到它。魔数是操作系统用来确认文件的类型，操作系统会在加载可执行程序之前。确认魔数是否正确，如果不正确会拒绝加载。
+## 170418
+	——BEGIN_DECLS和__END_DECLS这两个宏是为了C和C++混合编程设计的底层宏。
+	#ifdef __cplusplus
+	#define __BEGIN_DECLS extern "C"{
+	#define __END_DECLS }
+	#else 
+	#define __BEGIN_DECLS
+	#define __END_DECLS
+	包含在头文件sys/cdefs.h中。extern "C"主要是为了使得C++编译器能够使用gcc编译成的*.o文件。extern "C"告诉C++编译器按照C语言的方式进行编译和链接.
+	对于同一个函数：void foo(int, int)，被C编译器编译为_foo，而C++编译器为_foo_int_int。c++编译器采用:_函数名_形参类型这种命名方式，实现了重载机制。 
