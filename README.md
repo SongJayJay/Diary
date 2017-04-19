@@ -114,3 +114,7 @@
 	#define __END_DECLS
 	包含在头文件sys/cdefs.h中。extern "C"主要是为了使得C++编译器能够使用gcc编译成的*.o文件。extern "C"告诉C++编译器按照C语言的方式进行编译和链接.
 	对于同一个函数：void foo(int, int)，被C编译器编译为_foo，而C++编译器为_foo_int_int。c++编译器采用:_函数名_形参类型这种命名方式，实现了重载机制。 
+	线程的pid和tid类型为pthread_t。在POSIX线程中pthread_self下获取线程pid，syscall(SYS_gettid)获取tid。pid是在用户空间下的线程id,不同进程中的线程可能有相同的tid。pid是在内核空间的线程id，每一线程都有唯一的tid。
+## 170419
+	extern是一个声明，声明变量为一个外部变量。对于编译器来说声明不分配内存。
+定义分配内存。
