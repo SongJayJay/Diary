@@ -161,3 +161,27 @@
      	重构也包括对测试代码的重构。比如：开发到一定阶段时，初始化数据的准备工作应统一完成，可将一类测试用例中的“准备”动作提取出来
      	出错则减慢速度，小步验证
 
+## 170504
+	class A: public enable_shared_from_this<A>{
+	    public:
+		shared_ptr<A> getThis()
+		{
+			//这是enable_shared_from_this模板类中定义的方法
+			//确保返回的是一个对象
+			return shared_from_this();
+			//这种返回不好
+			//return shared_ptr<A>(this)
+		}
+	};
+	int main()
+	{
+		A *pa = new A()	
+		shared_ptr<A> sp(pa);
+		//智能指针sp的引用为1
+		//sp.use_count();
+		shared_ptr<A> sp1 = pa->getThis();
+		//return shared_from_this,输出为2；
+		//return shared_ptr<A>(this)，输出为1；
+		std::cout<<sp1.use_count()<<std::endl;
+		
+	}
