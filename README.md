@@ -203,3 +203,41 @@
 		std::cout<<sp1.use_count()<<std::endl;
 		
 	}
+##　170512
+	为保证分支提交历史的清洁整齐，需要减少同一分支上的合并操作，而在同一分支上发生合并的情况，只有在git pull的时候
+	因此需要在pull的时候加上参数--rebase.
+     	git pull -- rebase时，如果暂存区有未提交的修改，会出现错误：refuse to pull your working tree is not up-to-date.
+    	 因此进行pull操作时记得暂存区和工作区的清洁.
+	 
+	 讨论另外一个话题：在继承的时候的隐藏。
+	 1. 如果派生类的函数与基类的函数同名，但是参数不同。此时不论有无virtual关键字，基类的函数将被隐藏(注意不要与重载弄混，重载是在同一作用域内也就是同一类内)
+	 2. 如果派生类的函数与基类的函数同名，并且参数也相同，但是基类函数没有virtual关键字。此时，基类的函数被隐藏（注意别与覆盖混淆）
+	 calss Base
+	 {
+	 	public:
+			void menfn()
+			{
+				cout<<"Base funtion()";
+			}
+			
+			voif memfn(int)
+			{
+			   cout<<"Base memfunc(int)";
+			}
+	 }
+
+	class Derived: public Base
+	{
+		public:
+			using Base::menfn;//using只能指定一个名字，不能带形参
+			int menfn(int)
+			{
+				cout<<"Derivecxd function with it"<<end;
+			}
+	}
+	int main()
+	{
+		Base b;
+		Derived d;
+		d.memfn();//如果去掉Derived类里得using声明，会出现错误：”class Derived 没有名为memfn的成员“
+	}
