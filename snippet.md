@@ -8,4 +8,12 @@ enum calss ParamType
 {
 	PARAMS_BY_NAME, PARAMS_BY_POSITION
 }
+//创建智能指针
+class Demo
+{
+	public:
+		Demo(int n){}
+	...
+};
+auto handler = make_shared<Demo>(3)
 ```
