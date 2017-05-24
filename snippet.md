@@ -41,3 +41,43 @@ static size_t assignMem(void *ptr, size_t size, size_t nmemb, string *s)
 	return size * nmemb;
 }
 ```
+### 可变参数
+```cpp
+typedef enum {PARAMS_BY_NAME, PARAMS_BY_POSITION} parameterDeclaration_t;
+enum jsontype_t
+{
+	JSON_STRING = 1,
+	JSON_BOOLEAN = 2,
+	JSON_INTEGER = 3,
+	JSON_REAL = 4,
+	JSON_OBJECT = 5,
+	JSON_ARRAY = 6
+};
+//生成处理过程
+Procedure  Procedure(const string &name, parameterDeclaration_t paramType, ...)
+{
+	//1. 声明可变参数首地址
+	va_list parameters;
+	//2. 获取可变参数列表的首地址
+	va_start(parameters, paramType);
+	//3. 获取可变参数
+	//可变参数类型为const char*，因此向后取sizeof(const char*)个字节
+	const char *paramname = va_arg(parameters, const char *);
+	
+	jsontype_t type;
+	while(paramname != NULL)
+	{
+		type = (jsontype_t)va_arg(parameters, int);
+		this->AddParameter(paraname, type);
+		paramname = va_arg(parameters, const char*);	
+	}
+	va_end(parameters);
+
+	this->procedureName = name;
+	this->returnType = returntype;
+	this->procedureType = RPC_METHOD;
+	this->parameterDeclaration paramType;
+	
+}
+```
+
