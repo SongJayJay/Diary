@@ -85,9 +85,9 @@ Procedure  Procedure(const string &name, parameterDeclaration_t paramType, ...)
 
 #include <string>
 #include <string.h>
-#incldue <cstdlib>
-#incldue <cstdio>
-#incldue <unistd.h>
+#include <cstdlib>
+#include <cstdio>
+#include <unistd.h>
 #include <sys/socket.h>
 #include <sys/un.h>
 
