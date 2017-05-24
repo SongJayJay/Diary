@@ -80,4 +80,68 @@ Procedure  Procedure(const string &name, parameterDeclaration_t paramType, ...)
 	
 }
 ```
+### 主机进程间通信-客户端
+```cpp
 
+#include <string>
+#include <string.h>
+#incldue <cstdlib>
+#incldue <cstdio>
+#incldue <unistd.h>
+#include <sys/socket.h>
+#include <sys/un.h>
+
+#define BUFFER_SIZE 100;
+#define DELIMITER_CHAR char(0x0A)
+#define PATH_MAX 108
+
+void UnixSocket(const std::string& message, std::string& result, std::string& path)
+{
+	sockaddr_un addrress;
+	int socket_fd, nbytes;
+	char buffer[BUFFER_SIZE];
+	
+	//创建套接字
+	socket_fd = socket(AF_UNIX, SOCK_STREAM, 0);
+	if (socket_fd < 0)
+	{
+		//TODO 错误处理
+	}
+	memset(&address, 0, sizeof(sockaddr_un));
+	//设置套接字结构体
+	addrress.sun_family = AF_UNIX;
+	snprintf(addrress.sun_path, PATH_MAX, "%s", path.c_str());
+	
+	//链接服务器
+	if (connect(socket_fd, (struct sockaddr *)&addrress, sizeof(sockaddr_un)) != 0)
+	{
+		//TODO 错误处理
+	}
+	//信息发送完
+	bool fullyWritten = false;
+	//在本地保存一份外部数据
+	std::string tosend = message;
+	
+	do{
+		//注意ssize_t和size_t的区别
+		ssize_t byteWritten = write(socket_fd, toSend.c_str(), toSend.size());
+		if (static_cast<size_t>(byteWritten) < toSend.size())
+		{
+			int len = toSend.size() - byteWritten;
+			toSend = toSend.substr(byteWritten + sizeof(char), len);
+		}
+		else
+			fullyWritten = true;
+	
+	   }while(!fullyWritten)
+	
+	do{
+		nbytes = read(socket_fd, buffer, BUFFER_SIZE);
+		std::string temp;
+		temp.append(buffer, nbytes);
+		result.append(buffer, nbytes);	
+	}while(result.find(DELIMITER_CHAR) == std::string::npos)
+	//关闭套接字
+	close(socket_fd);
+}
+```
