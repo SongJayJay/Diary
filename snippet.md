@@ -145,3 +145,27 @@ void UnixSocket(const std::string& message, std::string& result, std::string& pa
 	close(socket_fd);
 }
 ```
+### 创建pthread线程
+```cpp
+#include <pthread.h>
+void threadfunc()
+{
+	//TODO 添加处理程序
+	//退出时，该函数返回值传递给status
+	pthread_exit(0);
+}
+int main()
+{
+	pthread_t tid;
+	int status;
+	//参数依次为:线程号，线程属性，线程函数，参数
+	pthread_create(&tid, NULL, (void *)threadfunc, NULL);
+	//主线程在这里阻塞，等待被调用线程执行完毕；
+	//status由pthread_exit函数返回
+	pthread_join(tid, (void*)&status);
+	printf("tid's exit is caused %d\n", status);
+
+	return 0;
+	
+}
+```
