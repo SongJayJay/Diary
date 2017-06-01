@@ -264,4 +264,8 @@
 	Json的数据结构:
 		1, 并列的数据之间使用"，"分隔，并列的数据集合（数组）使用[]表示；
 		2, 映射使用":"表示，映射的集合使用{}表示
-
+## 170601
+	最近在研究PBFT算法，看了一个使用golang开源项目.以下对golang的一些与知识进行总结：
+	1, golang导入包 import（“fmt”）
+	   有时候会看到import(."fmt"),这是一个隐含操作符，fmt.Printf()可以写为Printf();
+	2, golang导入包import(f"fmt"),fmt.Printf()可以简写成f.Printf();

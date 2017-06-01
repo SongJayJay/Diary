@@ -168,4 +168,35 @@ int main()
 	return 0;
 	
 }
+实例：
+#include <iostream>
+#include <pthread.h>
+
+using namespace std;
+void* thread_1(void *arg)
+{
+	cout<<"I am  thread_1"<<endl;
+	pthread_detach(pthread_self());
+	while(1){};
+	pthread_exit(0);
+}
+
+void* thread_2(void *arg)
+{
+	cout<<"I am thread_2"<<endl;
+	while(1){}
+	pthread_exit(0);
+}
+
+int main()
+{
+	pthread_t tid;
+	cout<<"开始创建线程1:"<<endl;
+	pthread_create(&tid, NULL, thread_1, NULL);
+//	pthread_join(tid, NULL);
+	cout<<"开始创建线程2:"<<endl;
+	pthread_create(&tid, NULL, thread_2, NULL);
+	pthread_detach(tid);
+	return 0;
+}
 ```
