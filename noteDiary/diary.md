@@ -269,3 +269,36 @@
 	1, golang导入包 import（“fmt”）
 	   有时候会看到import(."fmt"),这是一个隐含操作符，fmt.Printf()可以写为Printf();
 	2, golang导入包import(f"fmt"),fmt.Printf()可以简写成f.Printf();
+## 171025
+   js定时器setInterval(函数,间隔); 
+## 171026
+   git:最好是每一次功能的改进和添加都在git上进行提交，填写日志进行辅助说明。
+   js:前端时间一直在寻找使得js promise异步执行能够同步的解决方案，今天总算在truffle-contract的说明文档中看到了async、await这两个关键词。async/awit可以使得promise
+   返回后再继续执行后面的语句。
+   ``` js
+        async function(){
+            //promise fun1返回之后,fun2才执行
+            await fun1();
+            await func2();
+        }
+
+   ```
+## 171030
+    今天需要使用js把系统时间戳转为yyyymmdd格式的日期。
+    ``` js
+  		transTimeStamp: function(time){
+    			var date = new Date(time*1000);
+   			    var year = date.getFullYear();
+    			var month = date.getMonth()+1;
+    			var day = date.getDate().toString();
+    			var yyyymmdd = year.toString();
+    			if(month < 10)
+        			yyyymmdd += "0";
+    			yyyymmdd +=month.toString();
+    			if (day < 10)
+        			yyyymmdd+= "0";
+    			yyyymmdd += day.toString();
+    			return yyyymmdd;
+  			} 
+    ```
+	js Date的getMoth()返回值是0(一月)~11(12)月，+1才是系统当前的月份。
