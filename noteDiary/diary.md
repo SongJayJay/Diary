@@ -302,3 +302,58 @@
   			} 
     ```
 	js Date的getMoth()返回值是0(一月)~11(12)月，+1才是系统当前的月份。
+## 171031
+    列了一下js书籍的表单：
+        1，javascript权威指南
+        2，Effective JavaScript
+        3，你不知道的JavaScript上卷+中卷
+## 171101
+    js是单线程执行的，但是它的事件和定时器感觉是在异步执行？
+    首先，浏览器的内核是多线程的，一个浏览器至少有3个常驻线程：js引擎线程、GUI渲染线程、浏览器事件触发线程。
+    js引擎是基于事件驱动来单线程执行，js引擎一直等待着任务的到来，然后进行处理。浏览器无论什么时候都只有一个js线程在执行；
+    GUI线程是负责渲染浏览器界面，当界面初始加载和重绘时，该线程就会执行。js引擎和GUI线程是互斥的。当js引擎执行时GUI线程会被挂起，GUI更新会被保存在一个队列中等到js引擎空闲
+    时立即执行；
+    事件触发线程负责把事件添加到待处理队列的队尾，等待js引擎进行处理。事件主要来自：setTimeout/setInterval、点击鼠标、ajax异步请求等。
+## 171103
+    智能合约的事件是EVM的日志工具。可以使用event将想要保存的数据记录到区块链上。然后创建事件过滤器，查找记录的数据。js中的contract_instance.eventi({fromBlock:0, 
+    toBlock:'latest'})创建了一个过滤器。可以指定过滤器的范围和希望找到的值。
+## 171114
+    项目开发使用的工具是Git，经常用到的命令：git status, git add --all, git commit -m "<comment>", git push origin master。还有一些命令不是经常用到，但却是git灵活的体现：
+### 关联远程仓库：
+    0, 查看关联仓库地址
+        $ git remote -v
+        # origin https://github.com/gzdaijie/koa-react-server-render-blog.git (fetch)
+        # origin https://github.com/gzdaijie/koa-react-server-render-blog.git (push)
+        # 查看远程仓库更多信息使用git remote show origin
+    1, 关联远程仓库
+        $ git remote add <name> <git-repo-url>
+       仓库的名称默认是origin，但是如果还有其他远程仓库可以自己命名添加即可。
+    2, 修改远程仓库地址
+        $ git remmote set-url origin <your-git-url>
+    3, 一个git仓库变为正在工作的仓库的子模块
+        $ git submodule add <git-repo-url>
+### 版本控制：
+    4, 查看历史版本
+        $ git log
+        $ git log --graph --decorate --abbrev-commit --all
+    5, 版本前进
+        $ git reflog
+    6, 远程仓库是最新的，但是你想用老版本覆盖
+        $ git push origin master --force
+        # 或者 git push -f origin master
+    7, 想回推到具体的某一版本
+        $ git reset --hard <hash>
+        # 例如 git reset --hard a3hd73r
+       --hard丢弃工作区修改， 让工作区与版本库代码一样，--soft是保留工作区的修改。
+   8, commit信息写错，可以修改
+        $ git commit --amend
+### 配置
+   9, 查看配置
+        $ git config --list
+   10, 配置姓名
+        $ git config --global user.name "<name>"
+        --global是可选参数，该参数表示配置全局信息
+   11, 配置email
+        $ git config --global user.email "<email address>"
+   12, 命令别名
+        $ git config --global alias.logg "log --graph --decorate --abbrev-commit --all"
