@@ -380,4 +380,28 @@
 		git show <tagname> 
 	删除tag
  		git tag -d <tagname>
-
+    向远程推送tag
+        git push origin --tags;(推送所有tag)
+        git push origin tagname(推送指定tag到远程)
+    
+    查看本地分支
+        git branch 
+    查看远程分支
+        git branch -r(从远程主机clone到本地的代码，git branch查看本地分支只有master,如果要获取
+                      其他分支信息，需要使用git branch -r。使用git checkout -b "本地分支名 远程分支名"获取
+                      远程分支名)
+    查看所有分支
+        git branch -a
+    删除本地分支
+        git branch -d  分支名
+    删除远程分支
+        git push origin --delete 分支名
+## 171213
+    ubuntu升级boost
+    1. 卸载boost
+        dpkg -S /usr/include/boost/version.hpp
+        sudo apt-get autoremove package-name
+    2. 下载boost
+    3. 安装boost
+        ./bootstrap.sh
+        ./b2
